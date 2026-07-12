@@ -1,0 +1,518 @@
+/* --- PENGATURAN DASAR & FONT --- */
+html {
+    scroll-behavior: smooth; 
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    
+    /* 1. Warna dasar paling gelap (Deep Navy) */
+    background-color: #0A2353; 
+    
+    /* 2. Tumpukan cahaya (Mesh/Aurora Effect) */
+    background-image:
+        radial-gradient(at 10% 90%, #BB63FF 0px, transparent 60%), /* Cahaya Pink/Ungu di kiri bawah */
+        radial-gradient(at 90% 90%, #56E1E9 0px, transparent 50%), /* Cahaya Cyan/Teal di kanan bawah */
+        radial-gradient(at 30% 20%, #5B58EB 0px, transparent 60%), /* Cahaya Biru Ungu di kiri atas */
+        radial-gradient(at 80% 10%, #112C71 0px, transparent 50%); /* Cahaya Biru Gelap di kanan atas */
+        
+    background-attachment: fixed; /* Biar gradasinya nggak pecah pas di-scroll */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    
+    /* 3. Teks dasar dibikin terang karena background sekarang gelap */
+    color: #F9FEF7; 
+}
+
+/* --- TAMPILAN NAVBAR --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    
+    /* 1. Efek Kaca (Background transparan) */
+    background: rgba(255, 255, 255, 0.05); 
+    
+    /* 2. Efek Blur (Memburamkan aurora di belakangnya) */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); /* Wajib ada untuk support browser Safari */
+    
+    /* 3. Garis kaca tipis di bawah navbar */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    
+    /* Bikin navbar selalu nempel di atas pas lo scroll webnya ke bawah */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900; /* Agak tebal dikit karena ini Logo */
+    letter-spacing: -1px;
+    
+    /* Efek Gradasi Metalik khusus Logo */
+    background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 70%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* Menu Navigasi di Kanan Atas */
+nav .nav-links a {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.5px; /* Jarak huruf dirapatkan dikit */
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #56E1E9; /* Cyan menyala pas disentuh */
+    text-shadow: 0 0 10px rgba(86, 225, 233, 0.5);
+}
+
+/* --- TAMPILAN HERO SECTION --- */
+.hero {
+    text-align: center;
+    /* Urutan padding: Atas (60px), Kiri-Kanan (20px), Bawah (15px) */
+    /* Sebelumnya yang bawah ini kemungkinan 40px atau lebih, kita sunat jadi 15px aja */
+    padding: 60px 20px 15px; 
+}
+.hero h2 {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 2.8rem; /* Agak digedein dikit biar jadi fokus utama */
+    
+    /* 1. KETEBALAN DIPANGKAS (Biar lebih tipis dan elegan) */
+    font-weight: 700; 
+    
+    /* 2. KERAPATAN HURUF (Dirapatkan minus 1.5px) */
+    letter-spacing: -1.5px; 
+    
+    line-height: 1.3;
+    margin-bottom: 30px;
+
+    /* 3. GRADASI DIPERBAIKI (Lebih dominan putih terang, abu-abunya dikurangi) */
+    background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 70%, #94A3B8 100%);
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    /* Bayangan tipis di belakang biar teks misah dari aurora */
+    filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.4));
+}
+.hero .sub-hero {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7); /* Putih pudar elegan */
+    max-width: 600px;
+    margin: -15px auto 35px auto; /* Ngatur jarak biar pas di tengah dan nggak kejauhan */
+    line-height: 1.6;
+    letter-spacing: -0.3px;
+}
+
+/* --- TAMPILAN KOLOM KLIK (ACTION CARDS) --- */
+.action-columns {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    margin-top: 40px;
+}
+
+/* Tampilan Dasar: Kaca Gelap (Obsidian) yang Tegas */
+.col-btn {
+    /* Background pakai Biru Super Gelap (#0A2353) dari palet, transparan 70% */
+    background: rgba(10, 35, 83, 0.7) !important; 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Bingkai putih terang tipis biar bentuk tombolnya "terpotong" jelas dari aurora */
+    border: 1px solid rgba(255, 255, 255, 0.35); 
+    border-radius: 20px; 
+    color: #F9FEF7 !important; 
+    
+    /* Ukuran Gendut (TIDAK DIUBAH) */
+    padding: 50px 30px; 
+    width: 320px; 
+    
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.4s ease; 
+    
+    /* Bayangan hitam pekat di bawahnya */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* --- EFEK LEDAKAN NEON SAAT DISENTUH --- */
+
+/* 1. Tombol Kiri (Ungu/Pink) */
+.col-btn.ungu:hover {
+    transform: translateY(-8px);
+    background: rgba(10, 35, 83, 0.9) !important; /* Makin gelap pas disentuh */
+    border-color: #BB63FF; /* Garis berubah Ungu */
+    /* Aura glow ungu memancar keluar */
+    box-shadow: 0 0 35px rgba(187, 99, 255, 0.6), 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. Tombol Kanan (Cyan/Sky Blue) */
+.col-btn.kuning:hover {
+    transform: translateY(-8px);
+    background: rgba(10, 35, 83, 0.9) !important; /* Makin gelap pas disentuh */
+    border-color: #56E1E9; /* Garis berubah Cyan */
+    /* Aura glow cyan memancar keluar */
+    box-shadow: 0 0 35px rgba(86, 225, 233, 0.6), 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling Ikon dan Teks (TIDAK DIUBAH) */
+.col-btn .ikon i {
+    font-size: 4.5rem; /* Ukuran ikon digedein biar proporsional */
+    color: #F9FEF7; /* Warna awal putih tulang */
+    transition: all 0.4s ease;
+}
+
+/* Efek nyala ikon kiri (Ungu) pas disentuh */
+.col-btn.ungu:hover .ikon i {
+    color: #BB63FF; /* Berubah jadi ungu */
+    text-shadow: 0 0 25px rgba(187, 99, 255, 0.9); /* Efek glow neon */
+    transform: scale(1.1); /* Ikonnya sedikit membesar */
+}
+
+/* Efek nyala ikon kanan (Cyan) pas disentuh */
+.col-btn.kuning:hover .ikon i {
+    color: #56E1E9; /* Berubah jadi cyan */
+    text-shadow: 0 0 25px rgba(86, 225, 233, 0.9); /* Efek glow neon */
+    transform: scale(1.1); /* Ikonnya sedikit membesar */
+}
+
+.col-btn .teks {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 1.4rem; 
+    font-weight: 540; /* Dibikin lebih tipis */
+    letter-spacing: -1px; /* Jarak dirapatkan */
+    
+    /* Efek Gradasi Metalik */
+    background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 70%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    /* Bayangan tipis biar teks nggak tenggelam */
+    filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.5)); 
+}
+
+/* Kolom Kiri - Gradasi Biru */
+.col-btn.ungu {
+    background-color: #030677;
+    color: #F9FEF7;
+    box-shadow: 0 4px 15px rgba(3, 6, 119, 0.2); 
+}
+.col-btn.ungu:hover {
+    background-color: #2758D2 
+}
+
+/* Kolom Kanan - Gradasi Kuning/Orange */
+.col-btn.kuning {
+    background-color: #48BBFA; 
+    color: #030677; /* Teks navy biar kontras dan kebaca jelas */
+    box-shadow: 0 4px 15px rgba(72, 187, 250, 0.3); 
+}
+.col-btn.kuning:hover {
+    background-color: #2758D2;
+    color: #F9FEF7; 
+}
+
+/* --- TAMPILAN EDUKASI (3 KOTAK) --- */
+.edukasi-section {
+    background: transparent; 
+    
+    /* Urutan padding: Atas (15px), Kiri-Kanan (20px), Bawah (60px) */
+    /* Sebelumnya yang atas ini 60px, kita pangkas jadi 15px biar dia naik mendekati tombol */
+    padding: 55px 20px 60px; 
+    
+    text-align: center;
+}
+
+/* Judul Utama "Waspada!..." */
+.edukasi-section h3 {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 530;
+    letter-spacing: -1.5px;
+    margin-bottom: 40px;
+    
+    /* Efek Gradasi Metalik */
+    background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 70%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Wadah 3 Kotak */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px; 
+    margin-top: 30px;
+}
+
+/* Desain Balok Kaca Edukasi */
+.card {
+    /* Pakai biru gelap dari palet (#112C71) dengan transparansi 60% */
+    background: rgba(17, 44, 113, 0.6); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Garis pinggir tipis warna Cyan pudar biar bentuknya terbingkai */
+    border: 1px solid rgba(86, 225, 233, 0.2); 
+    
+    /* AKSEN UTAMA: Garis neon tebal di atas kotak */
+    border-top: 4px solid #56E1E9; /* Cyan terang dari palet lo */
+    
+    padding: 30px;
+    border-radius: 12px;
+    
+    /* Bayangan lebih pekat biar kotak seolah "maju" ke depan */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+    
+    text-align: left;
+    transition: all 0.4s ease;
+    flex: 1; 
+}
+
+/* Efek pas kaca disentuh mouse */
+.card:hover {
+    transform: translateY(-8px); 
+    /* Warnanya makin pekat/solid pas disentuh */
+    background: rgba(17, 44, 113, 0.85); 
+    
+    /* Garis atas berubah jadi ungu khas Deep Space */
+    border-top: 4px solid #BB63FF; 
+    border-color: rgba(187, 99, 255, 0.4);
+    
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Judul Modus di dalam kotak */
+.card h4 {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 530;
+    letter-spacing: -0.5px; /* Rapat dikit aja karena teksnya kecil */
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(86, 225, 233, 0.2); 
+    padding-bottom: 10px;
+    
+    /* Efek Gradasi Metalik */
+    background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 70%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* Teks Penjelasan di dalam kotak */
+.card p {
+    color: rgba(255, 255, 255, 0.85); /* Putih pudar biar mata nggak capek baca */
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- TAMPILAN AI CHATBOT SECTION --- */
+/* ========================================================
+   AREA ANALISIS AI (Konsol Command Center Solid)
+   ======================================================== */
+.ai-section {
+    /* Background diganti jadi Navy gelap (Solid, bukan transparan) */
+    background: linear-gradient(145deg, #0A2353, #030677);
+    
+    /* Garis pinggir tipis warna Cyan untuk kesan mesin canggih */
+    border: 1px solid rgba(86, 225, 233, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Bayangan pekat biar kotaknya maju */
+    
+    /* Ukuran tetep sama persis kayak sebelumnya */
+    padding: 50px;
+    text-align: center;
+    border-radius: 16px;
+    margin: 40px auto;
+    max-width: 900px; 
+}
+
+/* Judul "Cek Tawaran Investasinya di Sini" */
+.ai-section h3 {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600; /* Dibuat lebih tipis elegan */
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    
+    /* Efek Gradasi Metalik */
+    background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 70%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.4));
+}
+/* Styling Image Representatif Tema */
+.ilustrasi-tema {
+    width: 80px; /* Ukuran proporsional, nggak kebesaran */
+    margin-bottom: 15px;
+    
+    /* Kita kasih efek cahaya biru/cyan biar nyatu sama kotak AI */
+    filter: drop-shadow(0px 0px 15px rgba(86, 225, 233, 0.6)); 
+    
+    /* Animasi ngambang tipis-tipis biar nggak kaku */
+    animation: floatImage 3s ease-in-out infinite;
+}
+
+/* Animasi mengambang untuk image */
+@keyframes floatImage {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Sub-teks "Tempelkan (paste) teks..." */
+.ai-section p.sub-text {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500; /* Tipis dan bersih */
+    letter-spacing: -0.3px;
+    color: #48BBFA; /* Tetap Sky Blue pekat biar gampang dibaca */
+    margin-bottom: 25px;
+}
+
+/* ========================================================
+   KOLOM INPUT (TEXTAREA)
+   ======================================================== */
+.ai-section textarea {
+    background-color: #F9FEF7; /* Putih tulang biar user tahu ini tempat ngetik */
+    color: #030677; /* Warna teks yang diketik jadi biru gelap */
+    border: 2px solid #2758D2; /* Garis pinggir biru standar */
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Efek nyala pas kolom diklik untuk ngetik */
+.ai-section textarea:focus {
+    outline: none;
+    border-color: #56E1E9; /* Berubah jadi Cyan */
+    box-shadow: 0 0 15px rgba(86, 225, 233, 0.4); /* Efek cahaya keluar */
+}
+
+/* ========================================================
+   TOMBOL MULAI ANALISIS AI
+   ======================================================== */
+.btn-analisis {
+    /* Gradasi Royal Blue ke Ungu */
+    background: linear-gradient(135deg, #2758D2 0%, #5B58EB 100%);
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(91, 88, 235, 0.4);
+    margin-top: 25px;
+}
+
+.btn-analisis:hover {
+    /* Berubah jadi terang (Cyan ke Biru) pas disentuh */
+    background: linear-gradient(135deg, #56E1E9 0%, #2758D2 100%);
+    transform: translateY(-3px); /* Tombol sedikit terangkat */
+    box-shadow: 0 10px 25px rgba(86, 225, 233, 0.5);
+}
+/* ========================================================
+   TAMPILAN KOTAK HASIL ANALISIS AI (VERSI KARTU RAPI)
+   ======================================================== */
+
+#hasil-analisis {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Efek bayangan biar kotaknya melayang */
+    margin-top: 35px;
+    border-left: 8px solid #ccc; /* Warna default abu-abu sebelum dianalisis */
+    transition: all 0.3s ease; /* Biar ganti warnanya mulus */
+
+    max-width: 800px; /* Bikin lebarnya nyamain kotak atas */
+    margin-top: 35px; /* Jarak dari atas */
+    margin-left: auto; /* Dorong ke tengah dari kiri */
+    margin-right: auto; /* Dorong ke tengah dari kanan */
+}
+/* 1. Desain Judul Kotak */
+#hasil-analisis h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2C3B4D;
+    font-weight: 700;
+    border-bottom: 2px dashed #eee; /* Garis putus-putus pembatas */
+    padding-bottom: 10px;
+}
+
+/* 2. Desain Wadah Status (Biar statusnya kelihatan kayak badge) */
+.skor-container {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block; 
+    margin-bottom: 15px;
+    border: 1px solid #eaeaea;
+}
+
+.label-skor {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #555;
+    margin-right: 5px;
+}
+
+/* 3. Desain Teks Penjelasan Kesimpulan (Biar enak dibaca) */
+#teks-hasil {
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+    font-size: 1.05rem;
+    margin-bottom: 0;
+}
+
+/* ========================================================
+   SERAGAM WARNA INDIKATOR STATUS (HIJAU, ORANYE, MERAH)
+   ======================================================== */
+
+/* STATUS: AMAN */
+.tema-aman { border-left-color: #28a745 !important; }
+.teks-aman { color: #28a745 !important; font-weight: 800; font-size: 1.3rem; }
+
+/* STATUS: WASPADA */
+.tema-waspada { border-left-color: #fd7e14 !important; }
+.teks-waspada { color: #fd7e14 !important; font-weight: 800; font-size: 1.3rem; }
+
+/* STATUS: BAHAYA */
+.tema-bahaya { border-left-color: #dc3545 !important; }
+.teks-bahaya { color: #dc3545 !important; font-weight: 800; font-size: 1.3rem; }

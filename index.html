@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WarasFinansial - Cek Investasi Bodong</title>
+    
+    <!-- PANGGIL FONT DARI GOOGLE DISINI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Baru panggil file CSS lo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BAGIAN 1: NAVBAR (Paling Atas) -->
+    <nav>
+        <div class="logo">WarasFinansial</div>
+        <div class="nav-links">
+            <!-- Ini link yang kalau diklik bakal scroll ke bagian id="edukasi" atau "ai-cek" -->
+            <a href="#edukasi">Kenali Modusnya</a>
+            <a href="#ai-cek">Cek Tawaran Investasi</a>
+        </div>
+    </nav>
+
+    <!-- BAGIAN 2: HERO SECTION (Quotes & Tombol Besar) -->
+    <section class="hero">
+        <h2>Ragu ini penipuan atau bukan?<br>Cek dulu disini</h2>
+        <p class="sub-hero">Triliunan rupiah lenyap setiap tahun akibat investasi bodong. Jangan sampai uangmu jadi korban selanjutnya.</p>
+        <div class="action-columns">
+            <!-- Kolom Kiri -->
+            <a href="#edukasi" class="col-btn ungu">
+                <span class="ikon"><i class='bx bx-search-alt-2'></i></span>
+                <span class="teks">Kenali Modusnya</span>
+            </a>
+
+            <!-- Kolom Kanan -->
+            <a href="#ai-cek" class="col-btn kuning">
+                <span class="ikon"><i class='bx bx-shield-x'></i></span>
+                <span class="teks">Cek Tawaran Investasi</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- BAGIAN 3: EDUKASI (3 Kotak Modus) -->
+    <section id="edukasi" class="edukasi-section">
+        <h3>Waspada! Ini 3 Jebakan Penipu yang Paling Sering Dipakai</h3>
+        
+        <div class="cards">
+            <div class="card">
+                <h4>Untung Gede, Tanpa Risiko</h4>
+                <p>Janji profitnya luar biasa besar dalam waktu singkat, padahal kenyataannya setiap instrumen keuangan pasti punya risiko.</p>
+            </div>
+            <div class="card">
+                <h4>Fokus Cari Orang</h4>
+                <p>Fokus utamanya menyuruh kamu terus merekrut member baru buat nutupin bonus, bukan murni berjualan produk (Skema Ponzi).</p>
+            </div>
+            <div class="card">
+                <h4>Bodong & Ilegal</h4>
+                <p>Entitasnya tidak memiliki izin resmi dan tidak terdaftar di bawah pengawasan ketat Otoritas Jasa Keuangan (OJK).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BAGIAN 4: AREA KERJA AI (Kotak Input) -->
+    <section id="ai-cek" class="ai-section">
+        <img src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png" alt="AI Security Shield" class="ilustrasi-tema">
+        <h3>Cek Tawaran Investasinya di Sini</h3>
+        <p class="sub-text">Tempelkan (paste) teks tawaran yang mencurigakan, biar AI kami bantu analisis tingkat keamanannya.</p>
+        
+        <textarea placeholder="Contoh: Peluang emas, titip dana 1 juta besok cair 10 juta tanpa potongan. Slot terbatas, buruan transfer ke rekening admin..."></textarea><br>
+        
+        <button class="btn-analisis" id="btn-cek">Mulai Analisis AI</button>
+
+        <div id="hasil-analisis" class="hasil-box" style="display: none;">
+            <h4>Hasil Analisis AI:</h4>
+            
+            <div class="skor-container">
+                <span class="label-skor">Status Keamanan:</span>
+                <span id="angka-skor" class="angka-merah">0%</span>
+            </div>
+
+            <p id="teks-hasil"></p>
+        </div>
+    </section>
+    
+    
+<script>
+    //FITUR JAVASCRIPT UNTUK MENGHUBUNGKAN KE PYTHON (FLASK)
+    //Javascriptnya numpang di index.html kaa, aku takut kalo bikin file baru jadi error
+    
+        const tombol = document.getElementById('btn-cek');
+        const wadahHasil = document.getElementById('hasil-analisis');
+        const teksHasil = document.getElementById('teks-hasil');
+        const kotakTeks = document.querySelector('textarea');
+        const angkaSkor = document.getElementById('angka-skor');
+
+        // Pake 'async' karena kita bakal nungguin balasan dari server (API)
+        tombol.addEventListener('click', async function() {
+            const pesanUser = kotakTeks.value.trim();
+            
+            // 1. Validasi Anti-Kosong
+            if (pesanUser === "") {
+                alert("Kotak teks masih kosong! Tempelkan (paste) pesan WA/tawaran yang mencurigakan terlebih dahulu.");
+                return; 
+            }
+
+            // 2. Efek Loading
+            const teksAsliTombol = tombol.innerText;
+            tombol.innerHTML = "<i class='bx bx-loader-circle bx-spin'></i> AI Sedang Menganalisis...";
+            tombol.disabled = true; 
+            wadahHasil.style.display = "none"; 
+
+            try {
+                // 3. Kirim paket (teks) ke server Python
+                const response = await fetch('http://127.0.0.1:5000/analisis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pesan: pesanUser })
+                });
+
+                // 4. Terima balasan dari Python
+                const data = await response.json();
+
+                if(data.status === "sukses"){
+                    
+                const jawabanAI = data.hasil;
+                let status = "N/A";
+                let kesimpulan = jawabanAI;
+
+                // Kurir memisahkan teks berdasarkan kata KESIMPULAN
+                if (jawabanAI.includes("KESIMPULAN")) {
+                    let bagian = jawabanAI.split("KESIMPULAN");
+                    // Bersihkan teks status
+                    status = bagian[0].replace("STATUS:", "").replace("STATUS", "").replace(":", "").trim();
+        
+                // Bersihkan titik dua nyasar di kesimpulan
+                kesimpulan = bagian[1].trim();
+                if (kesimpulan.startsWith(":")) {
+                    kesimpulan = kesimpulan.substring(1).trim();
+                }
+                }
+                // Masukin teks ke layar web
+                angkaSkor.innerText = status;
+                teksHasil.innerText = kesimpulan;
+
+                //---BAGIAN GANTI WARNA---
+                /// 1. Bersihin seragam warna lama
+                wadahHasil.classList.remove("tema-aman","tema-waspada","tema-bahaya");
+                angkaSkor.classList.remove("teks-aman","teks-waspada","teks-bahaya");
+
+                /// 2. Cek statusnya dan pasang warna baru
+                const statusKapital = status.toUpperCase();
+                if (statusKapital.includes("AMAN")) {
+                    wadahHasil.classList.add("tema-aman");
+                    angkaSkor.classList.add("teks-aman");
+                } else if (statusKapital.includes("WASPADA")) {
+                    wadahHasil.classList.add("tema-waspada");
+                    angkaSkor.classList.add("teks-waspada");
+                } else if (statusKapital.includes("BAHAYA")) {
+                    wadahHasil.classList.add("tema-bahaya");
+                    angkaSkor.classList.add("teks-bahaya");
+                }
+            } else { 
+                angkaSkor.innerText = "ERROR";
+                teksHasil.innerText = "Yah, gagal analisis. Error dari server: " + data.pesan;
+            }
+
+            } catch (error) {
+                // --- TAMBAHIN SATU BARIS INI BIAR DIA LAPOR KE CONSOLE ---
+                console.error("Laporan Error Asli:", error);
+                angkaSkor.innerText = "ERROR";
+                teksHasil.innerText = "Ups! Gagal nyambung ke Python. Pastiin terminal di VS Code lo masih nyala ya!";
+            }
+
+            // 5. Munculin hasil dan balikin tombol
+            wadahHasil.style.display = "block"; 
+            tombol.innerText = teksAsliTombol;
+            tombol.disabled = false;
+        });
+    </script>
+
+</body>
+</html>
