@@ -116,7 +116,7 @@
 
             try {
                 // 3. Kirim paket (teks) ke server Python
-                const response = await fetch('http://127.0.0.1:5000/analisis', {
+                const response = await fetch('/analisis', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ pesan: pesanUser })
