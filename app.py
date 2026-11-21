@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import google.generativeai as genai
 import os
@@ -13,7 +13,13 @@ genai.configure(api_key=API_KEY)
 
 # Atur AI-nya pakai model Gemini yang paling stabil
 model = genai.GenerativeModel('gemini-3-flash-preview')
+@app.route('/')
+def home():
+    return send_from_directory('.', 'index.html')
 
+@app.route('/style.css')
+def style():
+    return send_from_directory('.', 'style.css')
 # Ini rute (jalur) yang bakal dipanggil sama tombol di web lo
 @app.route('/analisis', methods=['POST'])
 def analisis_pesan():
